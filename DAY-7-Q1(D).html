@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHTTP Request</title>
+</head>
+<body>
+    <script>
+        //create object
+        let xhr = new XMLHttpRequest();
+
+        //create header
+        xhr.open('GET', "https://restcountries.com/v3.1/all", 'true');
+
+        //what to do after responce received
+        xhr.onload = () => {
+            let array = JSON.parse(xhr.responseText);
+            let population = array.map((value)=> value.population).reduce((total, num)=>total+num);
+            console.log(population);
+            
+               
+        }
+
+        // send the request
+        xhr.send();
+
+    </script>
+</body>
+</html>

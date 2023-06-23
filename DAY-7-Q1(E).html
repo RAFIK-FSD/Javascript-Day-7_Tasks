@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+    </head>
+    <body>
+        <script>
+            // to create the objcet for XHR
+            let xhr = new XMLHttpRequest();
+
+            // set the request headers
+            xhr.open('GET', 'https://restcountries.com/v3.1/all', true);
+
+            // when the responce received 
+            xhr.onload = function () {
+                // console.log(this.responseText);
+                let array = JSON.parse(xhr.responseText)
+                let currencies = array.filter((value)=> value.currencies)
+                console.log(currencies.filter(country=>Object.keys(country.currencies).includes('USD')).map(country=>country.name.common))
+            }
+            // to send
+            xhr.send();
+        </script>
+    </body>
+</html>

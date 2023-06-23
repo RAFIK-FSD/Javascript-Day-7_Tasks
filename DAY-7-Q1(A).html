@@ -1,0 +1,28 @@
+<!-- 1. Solving problems using array function on the rest coutries data (https://restcountries.com/v3.1/all) -->
+<!-- A. Get all the countries from the asia continent/region using the filter function (2:01:00) -->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tasks</title>
+    </head>
+    <body>
+        <script>
+            // to create the objcet for XHR
+            let xhr = new XMLHttpRequest();
+
+            // set the request headers
+            xhr.open('GET', 'https://restcountries.com/v3.1/all', true);
+
+            // when the responce received 
+            xhr.onload = function () {
+                // console.log(this.responseText);
+                let array = JSON.parse(xhr.responseText)
+                console.log(array.filter((value)=>value.continents.includes('Asia')).map((value)=>value.name.common));
+            }
+            // to send
+            xhr.send();
+        </script>
+    </body>
+</html>
